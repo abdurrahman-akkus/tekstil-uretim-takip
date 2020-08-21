@@ -1,0 +1,6 @@
+Bu versiyon v1.1.2 versiyonudur.
+********************************
+YENÝLÝKLER
+********************************
+Bant Sayýsý 12ye çýkarýldý.
+Splash ekraný eklendi

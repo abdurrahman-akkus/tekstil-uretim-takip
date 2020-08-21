@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="dikimRaporu" printOrder="Horizontal" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" whenResourceMissingType="Empty" isIgnorePagination="true" uuid="883b0b6e-7b1a-40b5-bab2-63ba90b9ae49">
+	<property name="ireport.zoom" value="0.9090909090909091"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<style name="Crosstab Data Text" hTextAlign="Center" hImageAlign="Center"/>
+	<parameter name="tarih" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA["2017-06-16"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="raporDos" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA["C:/bantIzleme_v1.2/src"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="sqlTablosu" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["saatliktakip"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:/bantIzleme_v1.2/src/raporlar/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     $P!{sqlTablosu}.`bantAd` AS bantAd,
+     $P!{sqlTablosu}.`bantSef` AS bantSef,
+     $P!{sqlTablosu}.`donem` AS donem,
+     $P!{sqlTablosu}.`tarih` AS tarih,
+     $P!{sqlTablosu}.`model` AS model,
+     $P!{sqlTablosu}.`dikimAdet` AS dikimAdet,
+     $P!{sqlTablosu}.`koliAdet` AS koliAdet,
+     $P!{sqlTablosu}.`operatorAdedi` AS operatorAdedi,
+     $P!{sqlTablosu}.`dikimHedef` AS dikimHedef,
+     $P!{sqlTablosu}.`koliHedef` AS koliHedef,
+     `dikimAdet`-`dikimHedef` AS dikimFark
+FROM
+     $P!{sqlTablosu}
+WHERE
+     tarih = $P{tarih} AND duyuru="boş" AND operatorAdedi!=0
+ORDER BY
+     bantAd DESC]]>
+	</queryString>
+	<field name="bantAd" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="bantAd"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="saatliktakip"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="bantSef" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="bantSef"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="saatliktakip"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="donem" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="donem"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="saatliktakip"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tarih" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="tarih"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="saatliktakip"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="model" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="model"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="saatliktakip"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dikimAdet" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="dikimAdet"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="saatliktakip"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="koliAdet" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="koliAdet"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="saatliktakip"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="operatorAdedi" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="operatorAdedi"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="saatliktakip"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dikimHedef" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="dikimHedef"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="saatliktakip"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="koliHedef" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="koliHedef"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="saatliktakip"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dikimFark" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="dikimFark"/>
+	</field>
+	<variable name="donem_1" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{donem}]]></variableExpression>
+	</variable>
+	<variable name="donem_2" class="java.lang.Integer" resetType="Column" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{donem}]]></variableExpression>
+	</variable>
+	<variable name="donem_3" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{donem}]]></variableExpression>
+	</variable>
+	<variable name="toplam" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{dikimAdet}]]></variableExpression>
+	</variable>
+	<variable name="dikimHedefi" class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[$V{dikimHedefi}.doubleValue()]]></variableExpression>
+	</variable>
+	<variable name="dikimFark_1" class="java.lang.Long" resetType="Column" calculation="System">
+		<variableExpression><![CDATA[$F{dikimFark}]]></variableExpression>
+	</variable>
+	<group name="bantAd">
+		<groupExpression><![CDATA[$F{bantAd}]]></groupExpression>
+	</group>
+	<group name="donem">
+		<groupExpression><![CDATA[$F{donem}]]></groupExpression>
+	</group>
+	<title>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="45" backcolor="#FFFFEA" uuid="bddaa2d5-cad2-4498-a19f-24ff1ae65a58"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="26" isBold="true" pdfEncoding="Cp1254" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[SEYDİŞEHİR BEYBO SAATLİK DİKİM ADET TAKİP RAPORU]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="21">
+			<staticText>
+				<reportElement mode="Opaque" x="20" y="0" width="100" height="20" backcolor="#CCFFCC" uuid="d5ff3082-6d84-4b07-9c02-0d0a9e54a73c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true" pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[DİKİM RAPORU]]></text>
+			</staticText>
+			<image isLazy="true">
+				<reportElement mode="Transparent" x="120" y="0" width="47" height="21" uuid="8b513d8a-1d15-45d9-b1a2-3cd2251ffd73"/>
+				<imageExpression><![CDATA[$P{raporDos}+"/raporlar/raporResimleri/dikisMakinesi.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</columnHeader>
+	<summary>
+		<band height="232" splitType="Stretch">
+			<elementGroup>
+				<textField pattern="dd MMMMM yyyy">
+					<reportElement mode="Opaque" x="0" y="0" width="20" height="82" backcolor="#CCFFCC" uuid="b93c7b13-7db1-4257-bf22-bafd777b65f6"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+						<font pdfEncoding="Cp1254"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tarih}]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+			<crosstab>
+				<reportElement x="20" y="0" width="782" height="83" uuid="ac79ea00-effe-47db-861d-f0f22cf77103"/>
+				<crosstabHeaderCell>
+					<cellContents>
+						<staticText>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="55" height="30" backcolor="#BFE1FF" uuid="85086f35-5d1d-48cd-9935-02e1fe326d33"/>
+							<box>
+								<pen lineWidth="0.5"/>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font size="10" pdfEncoding="Cp1254"/>
+							</textElement>
+							<text><![CDATA[BANT NO]]></text>
+						</staticText>
+						<staticText>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="55" y="0" width="85" height="30" backcolor="#BFE1FF" uuid="94653388-71b8-4608-ad25-fa13bac7192a"/>
+							<box>
+								<pen lineWidth="0.5"/>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font size="10" pdfEncoding="Cp1254"/>
+							</textElement>
+							<text><![CDATA[MODEL ADI]]></text>
+						</staticText>
+						<staticText>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="140" y="0" width="55" height="30" backcolor="#BFE1FF" uuid="692ffd76-9885-4f18-953c-5e132a38d1b5"/>
+							<box>
+								<pen lineWidth="0.5"/>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font size="9" pdfEncoding="Cp1254"/>
+							</textElement>
+							<text><![CDATA[OPERATOR ADEDİ]]></text>
+						</staticText>
+						<staticText>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="195" y="0" width="84" height="30" backcolor="#BFE1FF" uuid="1c27ec45-7b6a-42d4-b2da-d791d73e1e0e"/>
+							<box>
+								<pen lineWidth="0.5"/>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font size="10" pdfEncoding="Cp1254"/>
+							</textElement>
+							<text><![CDATA[BANT ŞEFİ]]></text>
+						</staticText>
+					</cellContents>
+				</crosstabHeaderCell>
+				<rowGroup name="bantAd" width="55" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{bantAd}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textField>
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="55" height="25" backcolor="#F0F8FF" uuid="d0a38832-271d-4892-b34a-a8145788410b"/>
+								<box>
+									<pen lineWidth="0.5"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font pdfEncoding="Cp1254"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{bantAd}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents backcolor="#005FB3" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement mode="Transparent" x="140" y="0" width="139" height="25" forecolor="#FFFFFF" uuid="4cd7c966-9952-413c-b5ce-4dfb8e2499a9"/>
+								<box>
+									<pen lineWidth="0.5"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font pdfEncoding="Cp1254"/>
+								</textElement>
+								<text><![CDATA[TOPLAM]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<rowGroup name="model" width="85" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{model}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField isStretchWithOverflow="true">
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="85" height="25" printWhenGroupChanges="bantAd" backcolor="#F0F8FF" uuid="9fb5d9c9-4222-4766-8987-70a32347fab8"/>
+								<box>
+									<pen lineWidth="0.5"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font pdfEncoding="Cp1254"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{model}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<rowGroup name="op" width="55">
+					<bucket class="java.lang.Integer">
+						<bucketExpression><![CDATA[$F{operatorAdedi}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5"/>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textField>
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="55" height="25" backcolor="#F0F8FF" uuid="3a7dd22a-6b09-42d2-91e5-a05f1fa9c8b6"/>
+								<box>
+									<pen lineWidth="0.5"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font pdfEncoding="Cp1254"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{op}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents/>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<rowGroup name="sef" width="84">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{bantSef}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#F0F8FF" mode="Transparent">
+							<textField isStretchWithOverflow="true">
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="84" height="25" isPrintWhenDetailOverflows="true" printWhenGroupChanges="bantAd" backcolor="#F0F8FF" uuid="7469f11d-8ac8-4812-a699-f12e194d174b"/>
+								<box>
+									<pen lineWidth="0.5"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font pdfEncoding="Cp1254"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{sef}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents/>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<columnGroup name="donem" height="30" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{donem}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="39" height="30" backcolor="#BFE1FF" uuid="260f2e94-bf86-40a7-a316-32c503d98233"/>
+								<box>
+									<pen lineWidth="0.5"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font pdfEncoding="Cp1254"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{donem}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="50" height="30" uuid="91278ac5-f632-4aa6-b1a8-452241a6f011"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font pdfEncoding="Cp1254"/>
+								</textElement>
+								<text><![CDATA[TOPLAM]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<measure name="dikimAdetMeasure" class="java.lang.Integer" calculation="Sum">
+					<measureExpression><![CDATA[$F{dikimAdet}]]></measureExpression>
+				</measure>
+				<measure name="measure1" class="java.lang.Integer" calculation="Sum">
+					<measureExpression><![CDATA[$F{operatorAdedi}]]></measureExpression>
+				</measure>
+				<crosstabCell width="39" height="25">
+					<cellContents>
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField pattern="" isBlankWhenNull="true">
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="39" height="25" uuid="83ee7f96-5dc5-47d0-b9cf-ba182a6d3fd8"/>
+							<textElement verticalAlignment="Middle">
+								<font pdfEncoding="Cp1254"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{dikimAdetMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="50" columnTotalGroup="donem">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" uuid="ce39a0bc-3c05-4074-8d78-27e0f26238b5"/>
+							<textElement verticalAlignment="Middle">
+								<font pdfEncoding="Cp1254"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{dikimAdetMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="39" height="0" rowTotalGroup="model">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="50" height="0" rowTotalGroup="model" columnTotalGroup="donem">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="39" height="25" rowTotalGroup="bantAd">
+					<cellContents backcolor="#005FB3" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="39" height="25" forecolor="#FFFFFF" uuid="9d621b05-4f6c-47ae-8828-f815e776bc33"/>
+							<textElement verticalAlignment="Middle">
+								<font pdfEncoding="Cp1254"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{dikimAdetMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="50" height="25" rowTotalGroup="bantAd" columnTotalGroup="donem">
+					<cellContents backcolor="#005FB3" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" forecolor="#FFFFFF" uuid="09c96c64-ef15-4829-8e0d-16a75f5f4f69"/>
+							<textElement verticalAlignment="Middle">
+								<font pdfEncoding="Cp1254"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{dikimAdetMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="60" height="20" rowTotalGroup="op" columnTotalGroup="donem">
+					<cellContents/>
+				</crosstabCell>
+				<crosstabCell width="60" height="20" rowTotalGroup="sef" columnTotalGroup="donem">
+					<cellContents/>
+				</crosstabCell>
+			</crosstab>
+		</band>
+	</summary>
+</jasperReport>

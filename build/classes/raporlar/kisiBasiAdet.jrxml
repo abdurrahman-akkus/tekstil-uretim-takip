@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Operatör_Adet_Raporu" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b109900b-730e-4af0-90e0-221afabfeefb">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="basTarih" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2017-01-01"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="bitTarih" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2017-01-30"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT s.model, s.operatorAdedi, s.dikimAdet, ROUND((dikimAdet/((SUBSTRING(donem,7,2))-(SUBSTRING(donem,1,2))+
+((SUBSTRING(donem,10,2))-(SUBSTRING(donem,4,2)))/60))/s.operatorAdedi) as kisiBasiAdet 
+FROM saatliktakip_depo s where s.dikimAdet!=0 AND s.operatorAdedi>0
+AND dikimAdet>(
+SELECT (ROUND(AVG(dikimAdet))/1.3) FROM saatliktakip_depo SDA WHERE SDA.model=S.model GROUP BY model) 
+GROUP BY s.operatorAdedi,s.model ORDER BY s.model ASC, kisiBasiAdet ASC]]>
+	</queryString>
+	<field name="model" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="operatorAdedi" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dikimAdet" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="kisiBasiAdet" class="java.lang.Double"/>
+	<group name="model">
+		<groupExpression><![CDATA[$F{model}]]></groupExpression>
+		<groupHeader>
+			<band height="40">
+				<textField>
+					<reportElement style="SubTitle" x="47" y="13" width="506" height="24" forecolor="#990099" uuid="f6c24cc2-bd0d-44d1-9f38-fd016a406177"/>
+					<textElement>
+						<font isBold="true" pdfEncoding="Cp1254"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{model}]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement mode="Opaque" x="0" y="13" width="36" height="24" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="bf612d21-d1a3-40a8-a754-485486a3946e"/>
+				</rectangle>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="0" y="0" width="513" height="46" forecolor="#990099" uuid="1e0f37d9-a86e-4576-b172-3705a095b9bc"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="26" pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[Kişi Başı Adet Raporu]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="46" width="513" height="20" uuid="e433f3ad-ad98-4f5c-9f65-c0937e9e626b"/>
+				<textElement textAlignment="Right">
+					<font size="8" isItalic="true" pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{basTarih}+"/"+$P{bitTarih}+" tarih aralığında"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="72382a5a-9aa6-4550-88bf-5f28244dc3a2"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="185" height="15" uuid="4c7a7b20-3c60-4414-9b63-d4ddfe20e511"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[Operatör Adedi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="185" y="19" width="185" height="15" uuid="7a7ab76b-0670-48ee-84cb-8f6078819c78"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[Dikim Adeti]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="370" y="19" width="185" height="15" uuid="5cb3ee06-3025-4e7c-8b00-bee8a7c57a0d"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[Adet/Kişi]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="f88530ad-0ae8-45a1-a7af-0bf64df79d4d"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="185" height="15" uuid="398915e3-ccc1-4123-b217-76a1f6baf982"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{operatorAdedi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="185" y="0" width="185" height="15" uuid="b7b657b3-e495-40ce-bb7d-08915f6645c4"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dikimAdet}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="370" y="0" width="185" height="15" uuid="be6d39e7-69dd-4cd6-b835-3719ba6d3898"/>
+				<textElement>
+					<font pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kisiBasiAdet}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="c62f95fd-e72f-4fdd-a3da-50055bfb63f5"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="458d4c55-5a7b-4e04-8b7b-e5dcd113bbcd"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false" pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Sayfa "+$V{PAGE_NUMBER}+"/"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="a958be13-d0f1-4644-a943-a9b5f641b5cf"/>
+				<textElement>
+					<font size="10" isBold="false" pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="7e853dd2-405c-4386-856b-23afdd057609"/>
+				<textElement>
+					<font size="10" isBold="false" pdfEncoding="Cp1254"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

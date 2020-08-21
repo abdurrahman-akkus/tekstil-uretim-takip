@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Operatör Adetleri" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c2badae4-5cc0-4981-90b1-682d040079b2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="PieChartDataset" uuid="3b3d7595-275e-41c9-9337-51ad61f6586b"/>
+	<parameter name="basTarih" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2016-12-29"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="bitTarih" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2017-03-15"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     saatliktakip_depo.`model`,
+     CEILING(AVG(saatliktakip_depo.operatorAdedi))
+FROM
+     `saatliktakip_depo` saatliktakip_depo
+WHERE
+     operatorAdedi != '0'
+ AND tarih BETWEEN $P{basTarih} AND $P{bitTarih}
+GROUP BY
+     model
+ORDER BY
+     model ASC]]>
+	</queryString>
+	<field name="model" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CEILING(AVG(saatliktakip_depo.operatorAdedi))" class="java.lang.Long"/>
+	<background>
+		<band height="802" splitType="Stretch">
+			<line>
+				<reportElement x="201" y="431" width="117" height="1" uuid="5736ea9c-b2e8-4327-a6d0-fbeaf05bd05c">
+					<printWhenExpression><![CDATA[Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="3.0" lineStyle="Dotted" lineColor="#996600"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="72" y="37" width="204" height="1" uuid="4850d1de-6aef-40a6-a4c4-a69070effef8">
+					<printWhenExpression><![CDATA[Boolean.FALSE]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="3.0" lineStyle="Dotted" lineColor="#996600"/>
+				</graphicElement>
+			</line>
+			<image>
+				<reportElement x="37" y="38" width="180" height="180" uuid="009a63a9-2fe4-4007-bf11-f8e650d010c7"/>
+				<imageExpression><![CDATA["C:\\bantIzleme_v1.1\\src\\raporlar\\raporResimleri\\Sewing-Machine.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="9" y="160" width="91" height="94" uuid="a5ec8b50-70d0-4b6a-b638-1ee23ec0b5d5"/>
+				<imageExpression><![CDATA["C:\\bantIzleme_v1.1\\src\\raporlar\\raporResimleri\\uretkenlikVeri.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="94" splitType="Stretch">
+			<staticText>
+				<reportElement style="SubTitle" x="336" y="65" width="217" height="29" uuid="58bc7c51-04d2-4567-8f84-0f81727fee74"/>
+				<textElement textAlignment="Right">
+					<font size="22" isBold="false"/>
+				</textElement>
+				<text><![CDATA[MODELLERE GÖRE]]></text>
+			</staticText>
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="0" width="597" height="65" forecolor="#006699" backcolor="#006699" uuid="e329763a-8b18-42f9-9979-1d17b85ef8e4"/>
+				<staticText>
+					<reportElement style="Title" x="24" y="0" width="549" height="65" uuid="5dcb5da1-6ef5-4bd5-b040-3b674b559af1"/>
+					<textElement textAlignment="Right">
+						<font size="48" isBold="false"/>
+					</textElement>
+					<text><![CDATA[OPERATÖR ADETLERİ]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="27" splitType="Stretch">
+			<frame>
+				<reportElement x="227" y="0" width="328" height="20" uuid="e176903c-3fbb-4618-a5a1-211561339c1d"/>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" x="0" y="0" width="164" height="20" forecolor="#000000" uuid="fa184ee6-0588-4c7f-a1b2-3d6ac5ddd17b"/>
+					<box leftPadding="2" rightPadding="2">
+						<bottomPen lineWidth="1.0" lineStyle="Double"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[MODEL ADI]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" x="164" y="0" width="164" height="20" forecolor="#000000" uuid="3501d246-881e-409a-afd0-c8edf5f4f776"/>
+					<box leftPadding="2" rightPadding="2">
+						<bottomPen lineWidth="1.0" lineStyle="Double"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[ORTALAMA OPERATÖR]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="227" y="22" width="326" height="1" uuid="37e456d4-c666-4335-9ce0-65e6ee9b50e7"/>
+			</line>
+			<frame>
+				<reportElement x="227" y="0" width="328" height="20" uuid="c23265e4-38be-4073-b206-6aec2362491b"/>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="0" y="0" width="164" height="18" uuid="12db4685-b110-45d0-9046-61b83a97f072"/>
+					<box leftPadding="2" rightPadding="2">
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Left">
+						<font fontName="Arial" size="14" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{model}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="164" y="0" width="164" height="18" uuid="25201175-f9f2-4575-8e68-88081a3f3f89"/>
+					<box leftPadding="2" rightPadding="2"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" size="14" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{CEILING(AVG(saatliktakip_depo.operatorAdedi))}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="b82cec42-8e77-4345-9e7c-42a62b7871ab"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="13" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="2" y="0" width="555" height="13" forecolor="#D0B48E" backcolor="#006699" uuid="3f4c02cc-c25f-4539-9054-bfb5d38e353e"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="513" y="0" width="40" height="13" forecolor="#FFFFFF" uuid="b8272195-3520-4e2e-b1c8-a3f9edbcc61a"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="433" y="0" width="80" height="13" forecolor="#FFFFFF" uuid="4d131037-8629-4f05-a71a-e47c5052e267"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Sayfa "+$V{PAGE_NUMBER}+" /"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="0" width="197" height="13" forecolor="#FFFFFF" uuid="c68e7cbc-0282-4c39-8c89-d7762b2cc855"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

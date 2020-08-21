@@ -1,0 +1,7 @@
+1- dA veya kA boþ olunca hedefleri gir denince boþluktan dolayý program exception atýyor. Altta kalan
+kýsýmlarý hesaplamýyor
+2-Eposta gönderildi veya rapor baþarýlý ifadeleri yanlýþ  zamanlar da da belirebiliyor
+3-Geçmiþ tarihe kayýt yapýlýnca kayýt saatlik depo içerisine atýlýyor, fakat biz bunu istemiyoruz. Ýki seçenek var: ya kayýt 
+yapýlýrken if(tarih==bugün){kaydet(saatlik_depo içine);} yada son aktarým tarihi ifadesini kaldýrýp her kayýtta geçmiþ tarihli 
+veri var mý sorgusu yapýlabilir.
+4-ayarlar.properties ve varsayýlanlar.pro.. dosyalarýný iptal edip tüm bilgileri veritabanýndan çekmek daha saðlýklý olacak gibi

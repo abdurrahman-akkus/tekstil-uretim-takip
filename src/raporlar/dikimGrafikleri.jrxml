@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="dikimRaporu" printOrder="Horizontal" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" whenResourceMissingType="Empty" isIgnorePagination="true" uuid="883b0b6e-7b1a-40b5-bab2-63ba90b9ae49">
+	<property name="ireport.zoom" value="0.9090909090909091"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="58"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<subDataset name="sum Data" uuid="5fa356f6-9d5c-4773-b789-e7e20d86e8f0">
+		<parameter name="tarih" class="java.lang.String">
+			<parameterDescription><![CDATA[]]></parameterDescription>
+			<defaultValueExpression><![CDATA[$P{tarih}]]></defaultValueExpression>
+		</parameter>
+		<parameter name="raporDos" class="java.lang.String" isForPrompting="false">
+			<parameterDescription><![CDATA[]]></parameterDescription>
+			<defaultValueExpression><![CDATA["/home/dijital/yerelC/bantIzleme_v1.1/src"]]></defaultValueExpression>
+		</parameter>
+		<parameter name="sqlTablosu" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[$P{sqlTablosu}]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+     $P!{sqlTablosu}.`bantAd` AS SUMbantAd,
+     $P!{sqlTablosu}.`model` AS SUMmodel,
+     SUM(`dikimHedef`)-SUM(`dikimAdet`) AS SUMdikimFark
+FROM
+     $P!{sqlTablosu}
+WHERE
+     tarih = $P{tarih} AND duyuru="boş" AND operatorAdedi!=0
+GROUP BY
+     bantAd]]>
+		</queryString>
+		<field name="SUMbantAd" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="SUMmodel" class="java.lang.String"/>
+		<field name="SUMdikimFark" class="java.math.BigDecimal"/>
+	</subDataset>
+	<subDataset name="sum Data_Koli" uuid="d74ee7be-99ac-41c9-99de-9ae1c7ae0a7e">
+		<parameter name="tarih" class="java.lang.String">
+			<parameterDescription><![CDATA[]]></parameterDescription>
+			<defaultValueExpression><![CDATA["2017-01-20"]]></defaultValueExpression>
+		</parameter>
+		<parameter name="raporDos" class="java.lang.String" isForPrompting="false">
+			<parameterDescription><![CDATA[]]></parameterDescription>
+			<defaultValueExpression><![CDATA["/home/dijital/yerelC/bantIzleme_v1.1/src"]]></defaultValueExpression>
+		</parameter>
+		<parameter name="sqlTablosu" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA["saatliktakip_depo"]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+     $P!{sqlTablosu}.`bantAd` AS SUMbantAd,
+     $P!{sqlTablosu}.`model` AS SUMmodel,
+     SUM(`koliHedef`)-SUM(`koliAdet`) AS SUMkoliFark
+FROM
+     $P!{sqlTablosu}
+WHERE
+     tarih = $P{tarih} AND duyuru="boş" 
+GROUP BY
+     bantAd]]>
+		</queryString>
+		<field name="SUMbantAd" class="java.lang.String"/>
+		<field name="SUMmodel" class="java.lang.String"/>
+		<field name="SUMkoliFark" class="java.math.BigDecimal"/>
+	</subDataset>
+	<parameter name="tarih" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA["2017-01-20"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="raporDos" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA["C:\\bantIzleme_v1.1\\src"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="sqlTablosu" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["saatliktakip_depo"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     $P!{sqlTablosu}.`bantAd` AS bantAd,
+     $P!{sqlTablosu}.`bantSef` AS bantSef,
+     $P!{sqlTablosu}.`donem` AS donem,
+     $P!{sqlTablosu}.`tarih` AS tarih,
+     $P!{sqlTablosu}.`model` AS model,
+     $P!{sqlTablosu}.`dikimAdet` AS dikimAdet,
+     $P!{sqlTablosu}.`koliAdet` AS koliAdet,
+     $P!{sqlTablosu}.`operatorAdedi` AS operatorAdedi,
+     $P!{sqlTablosu}.`dikimHedef` AS dikimHedef,
+     $P!{sqlTablosu}.`koliHedef` AS koliHedef,
+     `dikimHedef`-`dikimAdet` AS dikimFark,
+     `koliHedef`-`koliAdet` AS koliFark
+FROM
+     $P!{sqlTablosu}
+WHERE
+     tarih = $P{tarih} AND duyuru="boş" AND operatorAdedi!=0
+ORDER BY
+     bantAd ASC, id ASC]]>
+	</queryString>
+	<field name="bantAd" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="bantSef" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="donem" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tarih" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="model" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dikimAdet" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="koliAdet" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="operatorAdedi" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dikimHedef" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="koliHedef" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dikimFark" class="java.lang.Long"/>
+	<field name="koliFark" class="java.lang.Long"/>
+	<variable name="donem_1" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{donem}]]></variableExpression>
+	</variable>
+	<variable name="donem_2" class="java.lang.Integer" resetType="Column" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{donem}]]></variableExpression>
+	</variable>
+	<variable name="donem_3" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{donem}]]></variableExpression>
+	</variable>
+	<variable name="toplam" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{dikimAdet}]]></variableExpression>
+	</variable>
+	<variable name="dikimHedefi" class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[$V{dikimHedefi}.doubleValue()]]></variableExpression>
+	</variable>
+	<variable name="dikimFark_1" class="java.lang.Long" resetType="Column" calculation="System">
+		<variableExpression><![CDATA[$F{dikimFark}]]></variableExpression>
+	</variable>
+	<group name="bantAd">
+		<groupExpression><![CDATA[$F{bantAd}]]></groupExpression>
+	</group>
+	<group name="donem">
+		<groupExpression><![CDATA[$F{donem}]]></groupExpression>
+	</group>
+	<title>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="45" backcolor="#FFFFFF" uuid="bddaa2d5-cad2-4498-a19f-24ff1ae65a58"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="30" isBold="true" pdfEncoding="Cp1254" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[DİKİM HEDEFLERİ İLE ÜRETİM ARASI FARK]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="21">
+			<staticText>
+				<reportElement mode="Opaque" x="20" y="0" width="124" height="20" backcolor="#CCFFCC" uuid="d5ff3082-6d84-4b07-9c02-0d0a9e54a73c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true" pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[SON SAAT DİKİM FARKI]]></text>
+			</staticText>
+			<image isLazy="true">
+				<reportElement mode="Transparent" x="144" y="0" width="47" height="21" uuid="8b513d8a-1d15-45d9-b1a2-3cd2251ffd73"/>
+				<imageExpression><![CDATA[$P{raporDos}+"\\raporlar\\raporResimleri\\dikisMakinesi.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement mode="Opaque" x="399" y="0" width="124" height="20" backcolor="#CCFFCC" uuid="d73a0f57-6509-4661-8cf7-92536a756a5d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true" pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[SON SAAT KOLİ FARKI]]></text>
+			</staticText>
+			<image isLazy="true">
+				<reportElement mode="Transparent" x="523" y="0" width="47" height="21" uuid="132014a7-bbee-419c-a913-3c43d6d67b9c"/>
+				<imageExpression><![CDATA[$P{raporDos}+"\\raporlar\\raporResimleri\\koli.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</columnHeader>
+	<summary>
+		<band height="555" splitType="Stretch">
+			<elementGroup>
+				<textField pattern="dd MMMMM yyyy">
+					<reportElement mode="Opaque" x="0" y="0" width="20" height="82" backcolor="#CCFFCC" uuid="b93c7b13-7db1-4257-bf22-bafd777b65f6"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+						<font pdfEncoding="Cp1254"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tarih}]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+			<image isLazy="true">
+				<reportElement mode="Transparent" x="144" y="265" width="47" height="21" uuid="4a604d3c-daee-4525-bc31-9cf18fb83553"/>
+				<imageExpression><![CDATA[$P{raporDos}+"\\raporlar\\raporResimleri\\dikisMakinesi.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement mode="Opaque" x="20" y="265" width="124" height="20" backcolor="#CCFFCC" uuid="d5813abb-e32e-4a5a-a360-1665de5d2da3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true" pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[TOPLAM DİKİM FARKI]]></text>
+			</staticText>
+			<barChart>
+				<chart>
+					<reportElement x="20" y="0" width="379" height="265" uuid="0aa965f1-d2ff-4f0a-bf4f-51ab44e29733"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{bantAd}+". BANT"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{bantAd}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{dikimFark}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot>
+						<seriesColor seriesOrder="0" color="#00CCCC"/>
+						<seriesColor seriesOrder="1" color="#6666FF"/>
+						<seriesColor seriesOrder="2" color="#9900FF"/>
+						<seriesColor seriesOrder="3" color="#FF6666"/>
+						<seriesColor seriesOrder="4" color="#CCCC00"/>
+						<seriesColor seriesOrder="5" color="#006600"/>
+						<seriesColor seriesOrder="6" color="#FF6600"/>
+						<seriesColor seriesOrder="7" color="#00CC33"/>
+					</plot>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+			<barChart>
+				<chart>
+					<reportElement x="399" y="285" width="403" height="265" uuid="0e529bcd-ff66-4040-a4d8-b675e614f406"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<dataset>
+						<datasetRun subDataset="sum Data_Koli" uuid="1fde69cc-74ec-4b14-982d-a448cb2c80db">
+							<datasetParameter name="tarih">
+								<datasetParameterExpression><![CDATA[$P{tarih}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="sqlTablosu">
+								<datasetParameterExpression><![CDATA[$P{sqlTablosu}]]></datasetParameterExpression>
+							</datasetParameter>
+						</datasetRun>
+					</dataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{SUMbantAd}+". BANT"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{SUMbantAd}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{SUMkoliFark}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+			<barChart>
+				<chart>
+					<reportElement x="399" y="0" width="403" height="265" uuid="100ceadd-6cef-4c2c-819d-c4cf30ceb979"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{bantAd}+". BANT"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{bantAd}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{koliFark}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot>
+						<seriesColor seriesOrder="0" color="#00CCCC"/>
+						<seriesColor seriesOrder="1" color="#6666FF"/>
+						<seriesColor seriesOrder="2" color="#9900FF"/>
+						<seriesColor seriesOrder="3" color="#FF6666"/>
+						<seriesColor seriesOrder="4" color="#CCCC00"/>
+						<seriesColor seriesOrder="5" color="#006600"/>
+						<seriesColor seriesOrder="6" color="#FF6600"/>
+						<seriesColor seriesOrder="7" color="#00CC33"/>
+					</plot>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+			<barChart>
+				<chart>
+					<reportElement x="20" y="286" width="379" height="264" uuid="22d288e8-caf6-4e4e-bbf4-3716e77bef6e"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<dataset>
+						<datasetRun subDataset="sum Data" uuid="047536c6-c208-4fda-965d-423a2ece9be1">
+							<datasetParameter name="tarih">
+								<datasetParameterExpression><![CDATA[$P{tarih}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="sqlTablosu">
+								<datasetParameterExpression><![CDATA[$P{sqlTablosu}]]></datasetParameterExpression>
+							</datasetParameter>
+						</datasetRun>
+					</dataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{SUMbantAd}+". BANT"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{SUMbantAd}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{SUMdikimFark}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+			<staticText>
+				<reportElement mode="Opaque" x="399" y="266" width="124" height="20" backcolor="#CCFFCC" uuid="dc75ed63-ce3b-4e25-8d73-8642b323aa56"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true" pdfEncoding="Cp1254"/>
+				</textElement>
+				<text><![CDATA[TOPLAM KOLİ FARKI]]></text>
+			</staticText>
+			<image isLazy="true">
+				<reportElement mode="Transparent" x="523" y="266" width="47" height="21" uuid="98c71a2b-1799-4630-a647-1db020909cc3"/>
+				<imageExpression><![CDATA[$P{raporDos}+"\\raporlar\\raporResimleri\\koli.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</summary>
+</jasperReport>
